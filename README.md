@@ -1,4 +1,4 @@
-# Applate
+# Gluon
 
 Gluon is a modern Application template that provides
 [JAMstack](https://jamstack.org/) conformity: JavaScript, API and pre-rendered markup. 
@@ -31,8 +31,7 @@ It is built upon state-of-art open source frameworks:
 
 ## How to use
 
-Gluon is simply used by forking it on github, cloning it 
-and performing some simple setup steps. 
+Gluon is a collection of github projects.
 For details see [Installation](docs/Installation.md).
 
 For the server requirements, see [Requirements](docs/Requirements.md).

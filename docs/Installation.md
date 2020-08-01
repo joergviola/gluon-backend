@@ -50,7 +50,7 @@ php artisan passport:install
 If you want to store documents in the local file system, initialize their public access symlink:
 
 ````
-php artisan passport:install
+php artisan storage:link
 ````
 
 At this time, your new gluon application is ready to work.
