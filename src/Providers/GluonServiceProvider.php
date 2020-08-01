@@ -3,6 +3,8 @@
 namespace Gluon\Backend\Providers;
 
 use Gluon\Backend\Console\CreateClient;
+use Gluon\Backend\Middleware\HandleError;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 
 class GluonServiceProvider extends ServiceProvider
@@ -28,6 +30,9 @@ class GluonServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/../../routes/index.php');
+
+        $kernel = $this->app->make(Kernel::class);
+        $kernel->pushMiddleware(HandleError::class);
 
         if ($this->app->runningInConsole()) {
 
