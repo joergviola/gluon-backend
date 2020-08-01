@@ -1,0 +1,21 @@
+{
+  "name": "gluon/gluon-backend",
+  "description": "API for Laravel",
+  "require": {
+    "laravel/passport": "^9.0"
+},
+"autoload": {
+      "psr-4": {
+          "Gluon\\Backend\\": "src"
+      }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "Gluon\\Backend\\Providers\\GluonServiceProvider"
+        ],
+        "aliases": {
+        }
+    }
+  }
+}

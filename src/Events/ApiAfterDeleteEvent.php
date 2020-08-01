@@ -1,0 +1,18 @@
+<?php
+
+namespace Gluon\Backend\Events;
+
+class ApiAfterDeleteEvent
+{
+    public $user;
+    public $type;
+    public $id;
+    public $count;
+
+    public function __construct($user, $type, $id, $count) {
+        $this->user = $user;
+        $this->type = $type;
+        $this->id = $id;
+        $this->count = $count;
+    }
+}
