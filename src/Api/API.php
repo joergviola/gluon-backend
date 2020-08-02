@@ -229,6 +229,7 @@ class API {
         $query = @$with['query'] ?: ['and' => []];
         if ($type=='document') {
             $thatField = 'item_id';
+            $thisField = 'id';
             $query['and']['type'] = @$query['type'] ?: $thisType;
             $query['and']['path'] = @$query['path'] ?: $field;
         }
@@ -261,14 +262,10 @@ class API {
         \Log::debug('API read', ['type' => $type, 'id' => $id]);
         $access = self::can($type, 'R');
         $user = $access['user'];
-        $query = ['id' => $id];
-        event(new ApiBeforeReadEvent($user, $type, $query));
-        $item = self::provider($type)
-            ->find($id);
-        if ($item==null || $item->client_id != $user->client_id) return null;
-        $result = [ $item ];
-        event(new ApiAfterReadEvent($user, $type, $result));
-        return $item;
+        $query = ['and' => ['id' => $id]];
+        $items = self::query($type, $query);
+        if (count($items)==0) return null;
+        return $items[0];
     }
 
     /**
