@@ -1,10 +1,20 @@
 {
   "name": "gluon/gluon-backend",
-  "description": "API for Laravel",
+  "description": "Extended REST API for Laravel",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Joerg Viola",
+          "email": "joerg@joergviola.de",
+          "homepage": "https://www.joergviola.de",
+          "role": "Developer"
+      }
+  ],
   "require": {
     "laravel/passport": "^9.0"
-},
-"autoload": {
+  },
+
+  "autoload": {
       "psr-4": {
           "Gluon\\Backend\\": "src"
       }
