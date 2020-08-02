@@ -6,6 +6,7 @@ use Gluon\Backend\Console\CreateClient;
 use Gluon\Backend\Middleware\HandleError;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class GluonServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,8 @@ class GluonServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
         $this->loadRoutesFrom(__DIR__.'/../../routes/index.php');
 
         $kernel = $this->app->make(Kernel::class);
