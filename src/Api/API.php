@@ -27,11 +27,11 @@ class API {
         'password_resets',
     ];
 
-    public static function query($type, $query) {
+    public static function query($type, $query, $call='query') {
         \Log::debug('API query', ['type' => $type, 'query'=>json_encode($query)]);
         $access = self::can($type, 'R');
         $user = $access['user'];
-        event(new ApiBeforeReadEvent($user, $type, $query));
+        event(new ApiBeforeReadEvent($user, $type, $query, $call));
         $q = self::provider($type);
         $q = self::select($q, $query);
         $q = self::join($q, $query, $type);
@@ -49,7 +49,7 @@ class API {
                 self::with($type, $result, $field, $with);
             }
         }
-        event(new ApiAfterReadEvent($user, $type, $result));
+        event(new ApiAfterReadEvent($user, $type, $result, $call));
 
         $result = self::count($result, $query, $type, $user);
 
@@ -263,7 +263,7 @@ class API {
         $access = self::can($type, 'R');
         $user = $access['user'];
         $query = ['and' => ['id' => $id]];
-        $items = self::query($type, $query);
+        $items = self::query($type, $query, 'read');
         if (count($items)==0) return null;
         return $items[0];
     }
