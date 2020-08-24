@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->documents = API::query('document', [
             'and' => ['type' => 'users', 'item_id' => $user->id ],
         ]);
-        event(new ApiAfterLoginEvent($user));
+        event(new ApiAfterLoginEvent($user, $request->all()));
         \Log::info('Login attempt successful', [$user->email]);
         if ($request->isJson()) {
             return response()->json($user);
