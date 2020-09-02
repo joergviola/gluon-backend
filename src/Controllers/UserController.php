@@ -4,6 +4,7 @@ namespace Gluon\Backend\Controllers;
 
 use Gluon\Backend\Api\API;
 use Gluon\Backend\Events\ApiAfterLoginEvent;
+use Gluon\Backend\Events\ApiBeforeLogoutEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,12 @@ class UserController extends Controller
             session(['token' => $user->token]);
             return redirect("/schema");
         }
+    }
+
+    public function logout() {
+        $user = Auth::user();
+        event(new ApiBeforeLogoutEvent($user));
+        // $user->revokeToken('Personal');
     }
 
     public function register(Request $request) {

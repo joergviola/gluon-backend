@@ -38,6 +38,7 @@ Route::group(['prefix' => 'api/v1.0', 'namespace' => 'Gluon\Backend\Controllers'
 Route::group(['prefix' => 'api/v1.0', 'namespace' => 'Gluon\Backend\Controllers', 'middleware' => ['auth:gluon']], function() {
     Route::get('/schema', 'SchemaController@schema');
 
+    Route::get('/logout', "UserController@logout");
     Route::get('/checkLogin', "UserController@checkLogin");
 
     Route::get('/{type}', 'APIController@readAll');
