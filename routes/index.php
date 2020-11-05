@@ -41,8 +41,11 @@ Route::group(['prefix' => 'api/v1.0', 'namespace' => 'Gluon\Backend\Controllers'
     Route::get('/logout', "UserController@logout");
     Route::get('/checkLogin', "UserController@checkLogin");
 
+    Route::get('/{type}/{id}/log', 'VersionController@log');
+    Route::put('/{type}/restore/{log}', 'VersionController@restore');
+
     Route::get('/{type}', 'APIController@readAll');
-    Route::get('/{type}/{id}/{reference}', 'APIController@readReference');
+//    Route::get('/{type}/{id}/{reference}', 'APIController@readReference');
     Route::post('/{type}/query', 'APIController@query');
     Route::get('/{type}/{id}', 'APIController@read');
     Route::post('/{type}', 'APIController@create');
@@ -50,9 +53,6 @@ Route::group(['prefix' => 'api/v1.0', 'namespace' => 'Gluon\Backend\Controllers'
     Route::put('/{type}/{id}', 'APIController@update');
     Route::delete('/{type}/query', 'APIController@deleteQuery');
     Route::delete('/{type}/{id}', 'APIController@delete');
-
-    Route::get('/{type}/{id}/log', 'VersionController@log');
-    Route::put('/{type}/restore/{log}', 'VersionController@restore');
 
     Route::get('/{type}/{id}/documents', 'DocumentController@list');
     Route::post('/{type}/{id}/documents', 'DocumentController@upload');
